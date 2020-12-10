@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div id="viewer"></div>
+    <script>       
+
+        var viewer = new PhotoSphereViewer.Viewer({
+          container: document.querySelector('#viewer'),
+          panorama: '{{pano.image.url}}'
+        });
+  
+        const audio = new Audio('{{pano.bgm.url}}');
+        const fullscreen = document.querySelector('.psv-fullscreen-button');
+      
+
+        fullscreen.onclick = () => {
+          const canvas = document.querySelector("#viewer > div > div.psv-canvas-container > canvas");
+          console.log(canvas);
+
+          window.onkeydown =function(event){
+            if(event.keyCode == 27){
+              console.log('esc 감지');
+              audio.pause();
+              audio.currentTime = 0;
+            }
+          };
+
+          console.log('클릭됨!!!');
+          if(audio.currentTime == 0)
+            audio.play();
+          else{
+            audio.pause();
+            audio.currentTime = 0;
+          }
+        }
+  
+        
+    </script>
+{% endblock %}

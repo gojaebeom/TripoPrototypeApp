@@ -1,0 +1,56 @@
+<!-- static 경로의 파일 사용 시 작성 -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <!-- icon -->
+    <script src="https://kit.fontawesome.com/ba092ee4c8.js" crossorigin="anonymous"></script>
+    <!-- default css -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- panarama api -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/three/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uevent@2/browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.min.js"></script>
+    <title>Tripo Test</title>
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="logo">Tripo.st</a>
+
+        {% if user.is_authenticated %}
+            <div>
+                <a href="/posts/create">글 쓰기</a>
+                <a href="/users/{{ user.id }}" class="logged-button">{{ user.username }}</a>
+                <a href="/logout" class="logged-button">로그아웃</a>
+            </div>
+        {% else %}
+            <div class="login-wrap">
+                <a href="/panorama/create" title="file upload"><i class="fas fa-cloud-upload-alt fa-2x" style="color:#FFBF00;"></i></a>
+                <a href="#" class="login-button">로그인</a>
+            </div>
+        {% endif %}
+    </div>
+    <!-- main -->
+    <div class="main">
+        <!-- left-menu -->
+        <div class="left-menu">
+            <a href="/"><i class="fas fa-home" style="color:#04B486;"></i>추천</a>
+            <a href="/panorama"><i class="fas fa-photo-video"></i>파노라마</a>
+        </div>
+        <!-- content -->
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <!-- right-menu -->
+        <div class="right-menu">
+            <a href="#">Tripo Chat</a>
+        </div>
+    </div>
+</body>
+</html>

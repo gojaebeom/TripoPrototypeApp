@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>파노라마 리스트</h1>
+    {% if pano_list %}
+        {% for pano in pano_list %}
+            <a href="/panorama/{{ pano.id }}" class="pano-wrap">
+                <div class="pano-title">{{ pano.title }}</div>
+                <img src="{{ pano.image.url }}" alt="images">
+            </a>
+        {% endfor %}
+    {% else %}
+        <div>게시물이 존재하지 않습니다 😥</div>
+    {% endif %}
+{% endblock %}
