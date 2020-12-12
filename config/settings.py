@@ -26,9 +26,7 @@ SECRET_KEY = '1np8(nwyk944!a$9h)f#stc^0^ua6zc_3jgu^z2(k(=9_wkul9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '18.179.58.9',
-]
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -40,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'panorama',
+    'customuser',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +138,6 @@ STATICFILES_DIRS = [
 ]
 # ./manage.py collectstatic
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
+
+# 인증 관련 user 모델
+AUTH_USER_MODEL = 'customuser.CustomUser'

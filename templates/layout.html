@@ -31,7 +31,7 @@
         {% else %}
             <div class="login-wrap">
                 <a href="/panorama/create" title="file upload"><i class="fas fa-cloud-upload-alt fa-2x" style="color:#FFBF00;"></i></a>
-                <a href="#" class="login-button">로그인</a>
+                <a class="login-button sign-open-button">로그인</a>
             </div>
         {% endif %}
     </div>
@@ -52,5 +52,8 @@
             <a href="#">Tripo Chat</a>
         </div>
     </div>
+    {% include 'include/sign-modal.html' %}
+
+    <script type="module" src="{% static 'js/app.js' %}"></script>
 </body>
 </html>
