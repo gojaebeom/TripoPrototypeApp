@@ -1,0 +1,42 @@
+<!-- static 경로의 파일 사용 시 작성 -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'include/head.html' %}
+</head>
+<body style="background-image: url('/static/img/cover.jpg');background-size:100%;">
+    <div class="sign-modal-background">
+        <div class="sign-modal-wrap">
+            <a href="/" class="sign-close-button">
+                <i class="fas fa-times-circle fa-2x"></i>
+            </a>
+            
+            <div class="sign-content-wrap login-menu">
+                <form action="/login/" method="post" class="sign-form">
+                    <h1>로그인</h1>
+                    {% csrf_token %}
+                    <div class="sign-form-content">
+                        <input type="email" name="username" placeholder="이메일 주소">
+                    </div>
+                    <div class="sign-form-content">
+                        <input type="password" name="password" placeholder="비밀번호">
+                    </div>
+                    
+                    {% if login_false %}
+
+                        <span style="color:#FA5858;font-weight:bold;">{{login_false}}</span>
+                        <br>
+                    {% endif %}
+                        
+                    <button>로그인</button>
+                </form>
+                <br>
+                <span>
+                    <a href="/login-menu" style="color:#04B486;cursor: pointer;font-weight:bold;">소셜 아이디로 로그인</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

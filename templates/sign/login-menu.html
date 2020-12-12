@@ -1,0 +1,44 @@
+<!-- static 경로의 파일 사용 시 작성 -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'include/head.html' %}
+</head>
+<body style="background-image: url('/static/img/cover.jpg');background-size:100%;">
+    <h1>hello</h1>
+    <div class="sign-modal-background">
+        <div class="sign-modal-wrap">
+            <a href="/" class="sign-close-button">
+                <i class="fas fa-times-circle fa-2x"></i>
+            </a>
+            <!-- LOGIN MENU -->
+            <div class="sign-content-wrap login-menu">
+                <h1>Studybook 로그인</h1>
+                <a href="/login" class="login-box">
+                    <img src="/static/img/email.png" alt="google icon">
+                    <span>이메일 로그인</span>
+                    <span></span>
+                </a>
+                <a class="login-box">
+                    <img src="/static/img/google.png" alt="google icon">
+                    <span>구글 로그인</span>
+                    <span></span>
+                </a>
+                <a class="login-box">
+                    <img src="/static/img/naver.png" alt="google icon">
+                    <span>네이버 로그인</span>
+                    <span></span>
+                </a>
+                <a class="login-box">
+                    <img src="/static/img/kakao.png" alt="google icon">
+                    <span>카카오 로그인</span>
+                    <span></span>
+                </a>
+                <br>
+                <span>계정이 없으세요? <a href="/join" style="color:#04B486;cursor: pointer;font-weight:bold;">가입하기</a></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

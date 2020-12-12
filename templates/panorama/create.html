@@ -1,5 +1,10 @@
 {% extends 'layout.html' %}
 {% block content %}
+{% if not user.is_authenticated %}
+    <script>
+        location.href="/login-menu";
+    </script>
+{% endif %}
 <h1>파노라마 생성하기</h1>
 <form action="/panorama/store" method="POST" enctype="multipart/form-data">
     {% csrf_token %}

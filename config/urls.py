@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 
 import config.views
 import panorama.views
+import customuser.views
 
 
 urlpatterns = [
@@ -27,9 +28,11 @@ urlpatterns = [
     # GET /admin/
     path('admin/', admin.site.urls), 
 
-    # PANORAMA URL 🧀
+    # MAIN URL
     # GET /
     path('', config.views.main), 
+
+    # PANORAMA URL 🧀
     # GET /panorama
     path('panorama/', panorama.views.index),
     # GET /panorama/:id
@@ -44,5 +47,15 @@ urlpatterns = [
     path('panorama/<int:id>/edit', panorama.views.edit),
     # GET /panorama/:id/destroy
     path('panorama/<int:id>/destroy', panorama.views.destroy),
+
+    # SIGN URL 🧀
+    # GET or POST /login
+    path('login/', customuser.views.login),
+    # GET or POST /join
+    path('join/', customuser.views.join),
+    # GET /login-menu
+    path('login-menu/', customuser.views.login_menu),
+    # GET /logout
+    path('logout/', customuser.views.logout),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
