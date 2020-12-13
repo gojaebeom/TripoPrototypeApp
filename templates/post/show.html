@@ -1,6 +1,5 @@
 {% extends 'layout.html' %}
 {% block content %}
-{% for post in post_list %}
 <div class="post-card">
     <a href="/users/{{post.user.id}}" class="post-card-header">
         {% if not post.user.profile_img %}
@@ -11,15 +10,12 @@
         <h3>{{post.user.nickname}}</h3>
     </a>
     <h5 class="post-card-category">{{post.category.name}}</h5>
+    <h5 class="post-card-category">{{post.created_at | date}}</h5>
     <h2 class="post-card-title">
         {{post.title}}
     </h2>
-    <div class="post-card-content-overflow post-content">
+    <div class="post-card-content post-content">
         {{post.content | safe}}
     </div>
-    <div class="post-card-detail-link">
-        <a href="/posts/{{post.id}}">더보기</a>
-    </div>
 </div>
-{% endfor %}
 {% endblock %}

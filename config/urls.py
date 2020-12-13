@@ -21,6 +21,8 @@ from django.conf.urls.static import static
 import config.views
 import panorama.views
 import customuser.views
+import category.views
+import post.views
 
 
 urlpatterns = [
@@ -57,5 +59,25 @@ urlpatterns = [
     path('login-menu/', customuser.views.login_menu),
     # GET /logout
     path('logout/', customuser.views.logout),
+
+    # USER URL 🧀
+    # GET /users/:id
+    path('users/<int:id>', customuser.views.show),
+
+    # CATEGORY URL 🧀
+    # GET /categories/create
+    path('categories/create', category.views.create),
+    # POST /categories/store
+    path('categories/store', category.views.store),
+
+    # POST URL 🧀
+    # GET /posts
+    path('posts/', post.views.index),
+    # GET /posts/:id
+    path('posts/<int:id>', post.views.show),
+    # GET /posts/create
+    path('posts/create', post.views.create),
+    # POST /posts/store
+    path('posts/store', post.views.store),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

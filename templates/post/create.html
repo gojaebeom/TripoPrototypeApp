@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% if not user.is_authenticated %}
+    <script>
+        location.href="/login-menu";
+    </script>
+{% endif %}
+{% if not category_list %}
+    <script>
+        const result = confirm('1개 이상의 카테고리를 만드셔야 합니다. 생성하시겠습니까?')
+        if(result){
+            location.href="/categories/create";
+        }
+        else{
+            location.href="/";
+        }
+    </script>
+{% endif %}
+    <h1>게시물 생성</h1>
+    <form action="/posts/store" method="post">
+        {% csrf_token %}
+        <div>
+            <input type="text" name="title" placeholder="제목을 입력해주세요">
+        </div>
+        <div>
+            <select name="category">
+                {% for category in category_list %}
+                    <option value="{{category.id}}">{{category.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <textarea name="content" id="editor"></textarea>
+        <button>생성</button>
+    </form>
+    <!-- ck editor -->
+    <script>
+        ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    </script>
+{% endblock %}

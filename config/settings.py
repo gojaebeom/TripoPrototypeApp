@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'panorama',
     'customuser',
+    'category',
+    'post',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +143,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
 
 # 인증 관련 user 모델
 AUTH_USER_MODEL = 'customuser.CustomUser'
+
+
+# 시간 관련 설정
+TIME_ZONE = 'Asia/Seoul'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = False  

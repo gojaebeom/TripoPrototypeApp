@@ -1,0 +1,53 @@
+{% extends '../layout.html' %}
+{% block content %}
+<div class="user-detail-wrap">
+    <div class="user-img-wrap">
+        {% if not user.profile_img %}
+            <img class="user-img" src="/static/img/default_user_img.png" alt="user image">
+        {% else %}
+            <img class="user-img" src="{{ user.profile_img.url }}" alt="user image">
+        {% endif %}
+    </div>
+    <div class="user-info-wrap">
+        <h2>{{user_detail.nickname}}</h2>
+        <h5>최근 활동 : {{user_detail.last_login}}</h5>
+    </div>
+</div>
+<hr>
+<article class="category-wrap">
+    <h2>카테고리 
+        {% if user.id == user_detail.id %}
+            <a href="/categories/create" title="카테고리 생성">
+                <i class="fas fa-plus-square"></i>
+            </a>
+        {% endif %}
+    </h2>
+    {% for category in category_list %}
+    <a class="category-block is-active">
+        <span class="category-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+        </span>
+        {{category.name}}
+    </a>
+    {% endfor %}
+</article>
+<br>
+<hr>
+<article class="post-wrap">
+    <h2>{{user_detail.nickname}}님의 게시물</h2>
+    {% for post in post_list %}
+    <div class="post-card">
+        <h5 class="post-card-category">{{post.category.name}}</h5>
+        <h2 class="post-card-title">
+            {{post.title}}
+        </h2>
+        <div class="post-card-content-overflow post-content">
+            {{post.content | safe}}
+        </div>
+        <div class="post-card-detail-link">
+            <a href="/posts/{{post.id}}">더보기</a>
+        </div>
+    </div>
+    {% endfor %}
+</article>
+{% endblock %}

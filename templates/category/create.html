@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>카테고리 만들기</h1>
+    <form action="/categories/store" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="category_name">카테고리 이름을 입력하세요</label>
+            <input id="category_name" type="text" name="name">
+        </div>
+        <button>생성</button>
+    </form>
+{% endblock %}
