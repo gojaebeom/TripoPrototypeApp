@@ -11,8 +11,6 @@
     <div class="user-info-wrap">
         {% if user.nickname %}
             <h2>{{user_detail.nickname}}</h2>
-        {% else %}
-            <h2>{{user_detail.last_name}}{{user_detail.first_name}}</h2>
         {% endif %}
         <h5>최근 활동 : {{user_detail.last_login}}</h5>
     </div>
@@ -38,7 +36,7 @@
 <br>
 <hr>
 <article class="post-wrap">
-    <h2>{{user_detail.nickname}}님의 게시물</h2>
+    <h2>게시물</h2>
     {% for post in post_list %}
     <div class="post-card">
         <h5 class="post-card-category">{{post.category.name}}</h5>

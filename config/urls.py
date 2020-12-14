@@ -74,7 +74,8 @@ urlpatterns = [
     # GET /users/:id
     path('users/<int:id>', customuser.views.show),
     # GET or POST /users/:id/update/nickname
-    path('users/<int:id>/update/nickname', customuser.views.update_nickname),
+    path('users/update/nickname/', customuser.views.update_nickname),
+    path('users/<int:id>/edit/nickname', customuser.views.edit_nickname),
 
     # CATEGORY URL 🧀
     # GET /categories/create

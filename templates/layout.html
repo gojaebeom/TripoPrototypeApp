@@ -9,11 +9,6 @@
     <div class="header">
         <a href="/" class="logo">Studybook</a>
         {% if user.is_authenticated %}
-            {% if not user.nickname  %}
-                <script>
-                    location.href="users/{{user.id}}/update/nickname"
-                </script>
-            {% endif %}
             <div style="display:flex;justify-content:center;align-items:center;">
                 <a href="/posts/create" title="게시글 작성"><i class="fas fa-cloud-upload-alt fa-2x" style="color:#FFBF00;"></i></a>
                 <div class="authenticated-wrap">

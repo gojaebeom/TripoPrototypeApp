@@ -38,7 +38,7 @@ def join(request):
         username = request.POST['username']
         password = request.POST['password']
         email    = request.POST['username']
-        nickname = request.POST['nickname'];
+        nickname = request.POST['nickname']
         CustomUser.objects.create_user(username=username, password=password, email=email, nickname=nickname)
 
         return redirect('/')
@@ -54,13 +54,20 @@ def show(request, id):
     return render(request, 'user/show.html', context={'user_detail':user_detail,'category_list':category_list, 'post_list':post_list})
 
 
-def update_nickname(request, id):
-    # if not request.user.is_authenticated:
-    #     return redirect('/error/403')
+def update_nickname(request):
+    if not request.user.is_authenticated:
+        return redirect('/error/403')
+    if request.user.nickname:
+        return redirect('/')
+
+
+    return render(request, 'sign/update-nickname.html')
+
+def edit_nickname(request, id):
+    if not request.user.is_authenticated:
+        return redirect('/error/403')
     if request.POST:
         user = CustomUser.objects.get(id=id)
         user.nickname = request.POST['nickname']
         user.save()
         return redirect('/')
-    
-    return render(request, 'sign/update-nickname.html')

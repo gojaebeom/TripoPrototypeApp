@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+# C:\mysqlclient-1.4.6-cp39-cp39-win_amd64.whl <-- 윈도우에서 mysql 다운받기
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -164,4 +164,5 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/users/update/nickname/'
+ACCOUNT_LOGOUT_ON_GET = True
