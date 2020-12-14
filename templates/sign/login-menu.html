@@ -1,5 +1,7 @@
 <!-- static 경로의 파일 사용 시 작성 -->
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,12 +22,12 @@
                     <span>이메일 로그인</span>
                     <span></span>
                 </a>
-                <a class="login-box">
+                <a href="{% provider_login_url 'google' %}" class="login-box">
                     <img src="/static/img/google.png" alt="google icon">
                     <span>구글 로그인</span>
                     <span></span>
                 </a>
-                <a class="login-box">
+                <a href="{% provider_login_url 'naver' %}" class="login-box">
                     <img src="/static/img/naver.png" alt="google icon">
                     <span>네이버 로그인</span>
                     <span></span>

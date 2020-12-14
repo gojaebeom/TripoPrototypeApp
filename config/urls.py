@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls.conf import include
 
 import config.views
 import panorama.views
 import customuser.views
 import category.views
 import post.views
+import error.views
 
 
 urlpatterns = [
@@ -30,9 +32,17 @@ urlpatterns = [
     # GET /admin/
     path('admin/', admin.site.urls), 
 
-    # MAIN URL
+    # MAIN URL🧀
     # GET /
     path('', config.views.main), 
+
+    # OAUTH URL 🧀
+    # GET /accounts
+    path('accounts/', include('allauth.urls')), # new
+
+    # ERROR URL 🧀
+    # GET /error
+    path('error/403', error.views.res403), # new
 
     # PANORAMA URL 🧀
     # GET /panorama
@@ -63,6 +73,8 @@ urlpatterns = [
     # USER URL 🧀
     # GET /users/:id
     path('users/<int:id>', customuser.views.show),
+    # GET or POST /users/:id/update/nickname
+    path('users/<int:id>/update/nickname', customuser.views.update_nickname),
 
     # CATEGORY URL 🧀
     # GET /categories/create

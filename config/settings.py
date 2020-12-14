@@ -37,10 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # new
+    # allauth 
+    'allauth', # new
+    'allauth.account', # new
+    'allauth.socialaccount', # new
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.naver',
+    'allauth.socialaccount.providers.kakao',
+
+    # myapp
     'panorama',
     'customuser',
     'category',
     'post',
+    'error',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +91,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'studybook',
+        'NAME': 'studybook_test',
         'USER': 'gojaebeom',
         'PASSWORD': 'woqja5164!',
         'HOST': '18.179.58.9',
@@ -116,13 +127,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
+# 시간 관련 설정
+TIME_ZONE = 'Asia/Seoul'
 USE_I18N = True
-
 USE_L10N = True
-
-USE_TZ = True
+USE_TZ = False  
 
 
 # Static files (CSS, JavaScript, Images)
@@ -144,9 +153,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
 # 인증 관련 user 모델
 AUTH_USER_MODEL = 'customuser.CustomUser'
 
+# allauth와 장고 username 인증 같이 사용
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
 
-# 시간 관련 설정
-TIME_ZONE = 'Asia/Seoul'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = False  
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'

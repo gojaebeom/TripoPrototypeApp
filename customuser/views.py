@@ -35,10 +35,12 @@ def logout(request):
 
 def join(request):
     if request.POST:
-        username = request.POST['username'];
-        password = request.POST['password'];
+        username = request.POST['username']
+        password = request.POST['password']
+        email    = request.POST['username']
         nickname = request.POST['nickname'];
-        CustomUser.objects.create_user(username=username, password=password, email=username, nickname=nickname)
+        CustomUser.objects.create_user(username=username, password=password, email=email, nickname=nickname)
+
         return redirect('/')
 
     return render(request, 'sign/join.html')
@@ -50,3 +52,15 @@ def show(request, id):
     post_list = Post.objects.all().filter(user_id=id)
     print(category_list)
     return render(request, 'user/show.html', context={'user_detail':user_detail,'category_list':category_list, 'post_list':post_list})
+
+
+def update_nickname(request, id):
+    # if not request.user.is_authenticated:
+    #     return redirect('/error/403')
+    if request.POST:
+        user = CustomUser.objects.get(id=id)
+        user.nickname = request.POST['nickname']
+        user.save()
+        return redirect('/')
+    
+    return render(request, 'sign/update-nickname.html')
