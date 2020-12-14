@@ -71,13 +71,3 @@ def edit(request):
 @require_GET
 def destroy(request):
     return redirect('/')
-
-
-def getBgm(request):
-    data = json.loads(request.body)
-    print(data)
-    pano = PanoramaPost.objects.get(id=id)
-
-    jsonfile = serializers.serialize('json', pano.bgm.url)
-
-    return HttpResponse(jsonfile, content_type="application/json")

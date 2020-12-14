@@ -4,6 +4,7 @@
     <form action="/categories/store" method="post">
         {% csrf_token %}
         <div>
+            <input type="hidden" name="return_result" value="{{return_result}}">
             <label for="category_name">카테고리 이름을 입력하세요</label>
             <input id="category_name" type="text" name="name">
         </div>
